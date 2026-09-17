@@ -9,7 +9,7 @@ enableRobotsTXT = true
 
 [params]
   description = '物理、编程与探索'
-  avatarURL = 'images/wordpress/cropped-u16851548201322649963fm26gp0.jpg'
+  avatarURL = 'images/avatar.jpg'
   avatarAltText = 'Martin Physics'
   avatarSize = 'size-m'
   footer = 'Martin Physics'
@@ -18,7 +18,6 @@ enableRobotsTXT = true
   numberPostsOnHomePage = 6
   showBackToTopButton = true
   dateFormat = '2006-01-02'
-  socialIcons = [{name = 'github', url = 'https://github.com/MatinxHT'}]
 
 [[menu.main]]
   name = '首页'

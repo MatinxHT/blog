@@ -1,0 +1,26 @@
+{
+  "wp-100003": [
+    {
+      "id": 3,
+      "author": "Martin Hung",
+      "date": "2026-08-20T07:39:24Z",
+      "content": "BTW we can use dotnet 9 WPF official fluent theme now！see more info in https://learn.microsoft.com/en-us/dotnet/desktop/wpf/whats-new/net90"
+    }
+  ],
+  "wp-100006": [
+    {
+      "id": 2,
+      "author": "Caiyi Zheng",
+      "date": "2024-12-10T04:16:38Z",
+      "content": "I agree with your criticism of the exam-oriented education in Chinese universities; this is indeed a significant issue, especially regarding the college entrance examination. However, the debate over whether 9.8 or 9.11 is larger is actually a classic problem used to test AI's capabilities. Perhaps only the Chinese play this way? In any case, whenever a new model is released, we always use this question to test it. When we see the model say \"9.11 is larger than 9.8,\" we find it quite interesting and want to know why the model cannot solve this problem."
+    }
+  ],
+  "wp-100028": [
+    {
+      "id": 4,
+      "author": "Martin Hung",
+      "date": "2026-09-04T04:36:36Z",
+      "content": "Now language switching between Chinese and English is supported."
+    }
+  ]
+}

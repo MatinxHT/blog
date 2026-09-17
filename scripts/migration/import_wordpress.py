@@ -1,4 +1,4 @@
-"""Import only public WordPress posts; keep the WXR source outside this repo."""
+"""Import published WordPress posts and approved comments from an external WXR export."""
 import argparse
 import html
 import json
@@ -12,7 +12,8 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify
 
 NS = {"wp": "http://wordpress.org/export/1.2/", "content": "http://purl.org/rss/1.0/modules/content/"}
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+AVATAR_FILENAME = "cropped-u16851548201322649963fm26gp0.jpg"
 
 
 def migrate(source):
@@ -23,12 +24,14 @@ def migrate(source):
     if len(exports) != 1:
         raise ValueError("Expected exactly one WordPress XML export")
     channel = ET.parse(exports[0]).find("channel")
-    images = ROOT / "static/images/wordpress"
+    images = ROOT / "static/images/posts"
     images.mkdir(parents=True, exist_ok=True)
     files = {p.name: p for p in source.iterdir() if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}}
     for name, path in files.items():
-        shutil.copy2(path, images / name)
-    report = {"posts": [], "images": sorted(files), "formula_count": 0, "missing_images": [], "excluded": {}}
+        target = ROOT / "static/images/avatar.jpg" if name == AVATAR_FILENAME else images / name
+        shutil.copy2(path, target)
+    report = {"posts": [], "images": sorted(files), "formula_count": 0, "comment_count": 0, "missing_images": [], "excluded": {}}
+    comments = {}
     posts = [i for i in channel.findall("item") if i.findtext("wp:post_type", namespaces=NS) == "post" and i.findtext("wp:status", namespaces=NS) == "publish" and not i.findtext("wp:post_password", namespaces=NS)]
     ids = {i.findtext("wp:post_id", namespaces=NS) for i in posts}
     for item in channel.findall("item"):
@@ -60,7 +63,8 @@ def migrate(source):
                 name = re.sub(r"-\d+x\d+(?=\.[^.]+$)", "", name)
             if name in files:
                 alt = node.get("alt") or Path(name).stem
-                protect(node, '{{< image src=' + json.dumps("images/wordpress/" + name, ensure_ascii=False) + ' alt=' + json.dumps(alt, ensure_ascii=False) + ' >}}')
+                image_path = "images/avatar.jpg" if name == AVATAR_FILENAME else "images/posts/" + name
+                protect(node, '{{< image src=' + json.dumps(image_path, ensure_ascii=False) + ' alt=' + json.dumps(alt, ensure_ascii=False) + ' >}}')
             else:
                 report["missing_images"].append({"post_id": post_id, "source": src})
                 protect(node, '\n\n> **图片待恢复：** 原文此处的截图未包含在 WordPress 备份中。\n\n')
@@ -89,16 +93,36 @@ def migrate(source):
         if not date or date.startswith("0000"):
             raise ValueError(f"Missing UTC date for {post_id}")
         modified = item.findtext("wp:post_modified_gmt", namespaces=NS)
-        front = {"title": title, "date": date.replace(" ", "T") + "Z", "draft": False, "type": "post", "slug": "wp-" + post_id, "wordpress_id": int(post_id), "tags": [c.text for c in item.findall("category") if c.get("domain") == "post_tag"], "categories": [c.text for c in item.findall("category") if c.get("domain") == "category"]}
+        front = {"title": title, "date": date.replace(" ", "T") + "Z", "draft": False, "type": "post", "slug": "wp-" + post_id, "tags": [c.text for c in item.findall("category") if c.get("domain") == "post_tag"], "categories": [c.text for c in item.findall("category") if c.get("domain") == "category"]}
         if modified and not modified.startswith("0000"):
             front["lastmod"] = modified.replace(" ", "T") + "Z"
         out = ROOT / "content/posts" / ("wp-" + post_id + ".md")
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(front, ensure_ascii=False, indent=2) + "\n\n" + markdown.strip() + "\n", encoding="utf-8")
         report["posts"].append({"id": int(post_id), "title": title, "path": "posts/wp-" + post_id + "/"})
+        public_comments = []
+        for comment in item.findall("wp:comment", NS):
+            if (comment.findtext("wp:comment_approved", namespaces=NS) != "1"
+                    or comment.findtext("wp:comment_type", default="comment", namespaces=NS) not in ("", "comment")):
+                continue
+            date = comment.findtext("wp:comment_date_gmt", namespaces=NS)
+            if not date or date.startswith("0000"):
+                raise ValueError(f"Missing UTC date for comment on post {post_id}")
+            public_comments.append({
+                "id": int(comment.findtext("wp:comment_id", namespaces=NS)),
+                "author": comment.findtext("wp:comment_author", default="", namespaces=NS),
+                "date": date.replace(" ", "T") + "Z",
+                "content": comment.findtext("wp:comment_content", default="", namespaces=NS),
+            })
+        if public_comments:
+            comments["wp-" + post_id] = public_comments
+            report["comment_count"] += len(public_comments)
+            with out.open("a", encoding="utf-8") as destination:
+                destination.write("\n{{< archived-comments >}}\n")
     (ROOT / "data").mkdir(exist_ok=True)
-    (ROOT / "data/wordpress.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Imported {len(posts)} posts, {len(files)} images, {report['formula_count']} formulas; missing images: {len(report['missing_images'])}")
+    (ROOT / "scripts/migration/report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "data/archived_comments.json").write_text(json.dumps(comments, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Imported {len(posts)} posts, {report['comment_count']} comments, {len(files)} images, {report['formula_count']} formulas; missing images: {len(report['missing_images'])}")
 
 
 if __name__ == "__main__":

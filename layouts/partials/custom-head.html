@@ -5,5 +5,7 @@
 <script defer src="{{ "js/math.js" | relURL }}"></script>
 {{ end }}
 {{ if .IsHome }}
-<script defer src="{{ "js/wordpress-redirects.js" | relURL }}"></script>
+<script defer src="{{ "js/legacy-redirects.js" | relURL }}"></script>
+<script defer src="https://secure.gravatar.com/js/gprofiles.js"></script>
+<script defer src="{{ "js/gravatar-hovercard.js" | relURL }}"></script>
 {{ end }}
