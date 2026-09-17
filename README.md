@@ -2,7 +2,7 @@
 
 Hugo 博客，使用 [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) 主题。
 
-测试站点：<https://matinxht.github.io/blog/>
+测试站点：<https://martinphysics.club/>
 
 ## 本地运行
 
@@ -24,7 +24,7 @@ python scripts/check_site.py
 
 推送到 `main` 后，GitHub Actions 自动构建并部署至 GitHub Pages。
 PR 只构建和检查，不发布。仓库 Settings → Pages 的 Source 使用 GitHub Actions。
-当前使用 `/blog/` 项目路径，未变更旧站域名或 DNS。
+当前使用自定义域名 `martinphysics.club`。
 
 ## WordPress 迁移
 

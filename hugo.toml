@@ -1,4 +1,4 @@
-baseURL = 'https://matinxht.github.io/blog/'
+baseURL = 'https://martinphysics.club/'
 title = 'martinphysics.club'
 theme = 'gokarna'
 defaultContentLanguage = 'zh-cn'

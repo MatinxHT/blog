@@ -6,7 +6,7 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / 'public'
-BASE = 'https://matinxht.github.io/blog/'
+BASE = 'https://martinphysics.club/'
 errors = []
 formulas = 0
 
@@ -39,10 +39,7 @@ for page in PUBLIC.rglob('*.html'):
         if url.hostname != urlsplit(BASE).hostname:
             continue
         path = unquote(url.path)
-        if not path.startswith('/blog/'):
-            errors.append(f'{relative}: link escapes project base: {link}')
-            continue
-        target = PUBLIC / path.removeprefix('/blog/')
+        target = PUBLIC / path.removeprefix('/')
         if target.is_dir():
             target /= 'index.html'
         if not target.is_file():
