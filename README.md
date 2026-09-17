@@ -6,7 +6,18 @@ Hugo 博客，使用 [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) �
 
 ## 本地运行
 
-安装 Hugo **0.166.0**，然后执行：
+在 Windows 版 VS Code 中打开仓库后，通过 **终端 → 运行任务** 选择 **Hugo: 本地预览**；浏览器访问 <http://localhost:1313/>，在任务终端按 `Ctrl+C` 停止。预览包含草稿，保存文件后会自动刷新。
+
+按 `Ctrl+Shift+B` 运行 **Hugo: 构建并检查**，执行与 CI 相同的严格构建和生成站点检查。检查需要本机安装 Python。首次运行会自动初始化主题，并在未找到匹配版本时将 Hugo **0.166.0** 下载到仓库的 `.tools/` 目录（已忽略）。
+
+也可以在 PowerShell 中直接运行：
+
+```powershell
+.\scripts\local.ps1 serve
+.\scripts\local.ps1 test
+```
+
+手动运行 Hugo 的方式：安装 Hugo **0.166.0**，然后执行：
 
 ```sh
 git submodule update --init --recursive
