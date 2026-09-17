@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+{{ if .IsPage }}
+<link rel="stylesheet" href="{{ "vendor/katex/katex.min.css" | relURL }}">
+<script defer src="{{ "vendor/katex/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "js/math.js" | relURL }}"></script>
+{{ end }}
+{{ if .IsHome }}
+<script defer src="{{ "js/wordpress-redirects.js" | relURL }}"></script>
+{{ end }}

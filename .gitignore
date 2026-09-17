@@ -1,0 +1,10 @@
+# WordPress exports must never enter the public repository.
+*.[xX][mM][lL]
+*.wxr
+wordpress-export*/
+private/
+public/
+resources/_gen/
+.hugo_build.lock
+__pycache__/
+.venv/
