@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="container tags-list">
+    <h1 class="list-title">{{ i18n .Data.Plural }}</h1>
+    {{ if eq (len .Data.Terms) 0 }}
+        {{ i18n "nothing" }}
+    {{ else }}
+    <ul class="post-tags">
+        {{ range .Data.Terms.ByCount }}
+        <li class="post-tag">
+            <a href="{{ .Page.RelPermalink }}">
+                <div class="tag-name">{{ .Name }}</div>
+                <div class="tag-posts-count">{{ .Count }}</div>
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+</div>
+{{ end }}

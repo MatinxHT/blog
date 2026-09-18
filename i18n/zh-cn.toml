@@ -14,5 +14,7 @@ other = '上一篇'
 other = '下一篇'
 [tags]
 other = '标签'
+[categories]
+other = '分类'
 [Posts]
 other = '文章'

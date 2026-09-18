@@ -57,6 +57,26 @@ comments = json.loads((ROOT / 'data/archived_comments.json').read_text(encoding=
 for post in report['posts']:
     if not (PUBLIC / post['path'] / 'index.html').is_file():
         errors.append(f'Missing migrated post {post["id"]}')
+for taxonomy in ('categories', 'tags'):
+    index = PUBLIC / taxonomy / 'index.html'
+    if not index.is_file():
+        errors.append(f'Missing {taxonomy} index')
+        continue
+    parsed = Links()
+    parsed.feed(index.read_text(encoding='utf-8'))
+    linked_terms = {
+        unquote(urlsplit(urljoin(BASE, link)).path).rstrip('/')
+        for link in parsed.links
+        if unquote(urlsplit(urljoin(BASE, link)).path).startswith(f'/{taxonomy}/')
+        and unquote(urlsplit(urljoin(BASE, link)).path).rstrip('/') != f'/{taxonomy}'
+    }
+    expected_terms = {
+        f'/{taxonomy}/{term.name}'
+        for term in (PUBLIC / taxonomy).iterdir()
+        if term.is_dir()
+    }
+    if not expected_terms or not expected_terms.issubset(linked_terms):
+        errors.append(f'{taxonomy} index does not list every term')
 for slug, entries in comments.items():
     page = PUBLIC / 'posts' / slug / 'index.html'
     if not page.is_file():
