@@ -10,7 +10,7 @@ $version = '0.166.0'
 $localHugo = Join-Path $root ".tools/hugo/$version/hugo.exe"
 Set-Location $root
 
-if (-not (Test-Path 'themes/gokarna/theme.toml')) {
+if (-not (Test-Path 'themes/PaperMod/theme.toml')) {
     Write-Host 'Initializing the Hugo theme submodule...'
     & git submodule update --init --recursive
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

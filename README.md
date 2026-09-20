@@ -1,6 +1,6 @@
 # martinphysics.club
 
-Hugo 博客，使用 [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) 主题。
+Hugo 博客，使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 主题。
 
 测试站点：<https://martinphysics.club/>
 
@@ -8,10 +8,10 @@ Hugo 博客，使用 [Gokarna](https://github.com/gokarna-theme/gokarna-hugo) �
 
 - `content/posts/`：文章；`wp-编号` 仅用于维持已公开的文章网址。
 - `data/archived_comments.json`：原站已公开评论。
-- `layouts/shortcodes/`：本站使用的图片、公式、视频和历史评论组件；`layouts/index.html` 为首页头像添加 Gravatar Hovercard。
+- `layouts/shortcodes/`：本站使用的图片、公式、视频和历史评论组件；`layouts/` 还包含 PaperMod 的 Hugo 兼容覆盖。
 - `static/images/`：头像与文章图片；`static/vendor/katex/`：公式渲染所需的精简资源。
 - `scripts/`：本地构建与站点检查；`scripts/migration/`：一次性迁移工具及核对清单。
-- `themes/gokarna/`：固定版本的主题子模块；`public/`、`.tools/` 等本地产物已被 Git 忽略。
+- `themes/PaperMod/`：固定版本的主题子模块；`public/`、`.tools/` 等本地产物已被 Git 忽略。
 
 ## 本地运行
 
@@ -61,7 +61,7 @@ CodeCogs 公式转换为 TeX，由仓库内的 KaTeX 0.16.22 渲染，不请求�
 迁移工具与核对清单集中在 `scripts/migration/`，清单仅包含公开文章及资源核对信息。已批准的 3 条公开评论保存在 `data/archived_comments.json`，会显示在对应文章的「历史评论」区；评论邮箱、IP 等非公开信息未导入。回收站示例文章的默认评论未导入。
 
 XML 原件始终保存在仓库之外。`.gitignore` 与 CI 防止加入 XML/WXR 源文件；Hugo 生成的 RSS/sitemap XML 正常发布。
-未导入草稿、回收站文章、密码保护内容、默认示例页、隐私政策草稿及 WordPress 账户/系统元数据。首页头像使用 Gravatar 官方 Hovercard：鼠标悬停时展示资料卡片。
+未导入草稿、回收站文章、密码保护内容、默认示例页、隐私政策草稿及 WordPress 账户/系统元数据。
 
 如需重新导入（会覆盖同 ID 文章，请先保存手工修改）：
 
@@ -72,5 +72,5 @@ python scripts/migration/import_wordpress.py "外部备份目录"
 
 ## 第三方代码
 
-Gokarna 使用 Git submodule 固定版本，遵循其 GPL-3.0 许可。
+PaperMod 使用 Git submodule 固定版本，遵循其 MIT 许可。
 KaTeX 只保留页面运行所需的压缩脚本、样式和 WOFF2 字体，遵循 MIT 许可，见 `static/vendor/katex/LICENSE`。

@@ -1,0 +1,31 @@
+{{ define "main" }}
+<header class="page-header topics-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  <p>按分类浏览主题，或从标签中发现相关文章。</p>
+</header>
+
+<section class="topics-section" aria-labelledby="categories-heading">
+  <h2 id="categories-heading">分类</h2>
+  <div class="category-grid">
+    {{ range site.Taxonomies.categories.ByCount }}
+    <a class="category-card" href="{{ .Page.RelPermalink }}">
+      <span class="category-name">{{ .Page.Title }}</span>
+      <span class="topic-count">{{ .Count }} 篇文章</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<section class="topics-section" aria-labelledby="tags-heading">
+  <h2 id="tags-heading">标签</h2>
+  <div class="tag-cloud">
+    {{ range site.Taxonomies.tags.ByCount }}
+    <a class="tag-chip" href="{{ .Page.RelPermalink }}">
+      <span>{{ .Page.Title }}</span>
+      <span class="topic-count">{{ .Count }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
