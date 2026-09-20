@@ -26,7 +26,7 @@ jobs:
           submodules: recursive
       - name: Reject WordPress exports
         run: |
-          if git ls-files | grep -Ei '\.(xml|wxr)$' | grep -Eiv '^layouts/.*\.xml$'; then
+          if git ls-files | grep -Ei '\.(xml|wxr)$' | grep -Eiv '^layouts/rss\.xml$'; then
             echo 'XML/WXR source files must not be committed.'
             exit 1
           fi
