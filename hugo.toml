@@ -1,23 +1,42 @@
 baseURL = 'https://martinphysics.club/'
 title = 'martinphysics.club'
-theme = 'gokarna'
-defaultContentLanguage = 'zh-cn'
+theme = 'PaperMod'
+defaultContentLanguage = 'zh'
 locale = 'zh-CN'
 timeZone = 'Asia/Shanghai'
 hasCJKLanguage = true
 enableRobotsTXT = true
 
 [params]
+  env = 'production'
   description = '物理、编程与探索'
-  avatarURL = 'images/avatar.jpg'
-  avatarAltText = 'Martin Physics'
-  avatarSize = 'size-m'
-  footer = 'Martin Physics'
-  accentColor = '#287d9b'
-  showPostsOnHomePage = 'recent'
-  numberPostsOnHomePage = 6
-  showBackToTopButton = true
-  dateFormat = '2006-01-02'
+  defaultTheme = 'auto'
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  ShowRssButtonInSectionTermList = true
+  ShowPageNums = true
+  disableSpecial1stPost = true
+  mainSections = ['post']
+  DateFormat = '2006-01-02'
+
+  [params.profileMode]
+    enabled = false
+
+  [params.homeInfoParams]
+    Title = 'martinphysics.club'
+    Content = '物理、编程与探索'
+
+  [params.assets]
+    favicon = 'favicon.svg'
+    favicon16x16 = 'favicon.svg'
+    favicon32x32 = 'favicon.svg'
+    apple_touch_icon = 'favicon.svg'
+    safari_pinned_tab = 'favicon.svg'
 
 [[menu.main]]
   name = '首页'
@@ -28,21 +47,19 @@ enableRobotsTXT = true
   url = '/posts/'
   weight = 2
 [[menu.main]]
-  name = '分类'
-  url = '/categories/'
+  name = '分类与标签'
+  url = '/topics/'
   weight = 3
-[[menu.main]]
-  name = '标签'
-  url = '/tags/'
-  weight = 4
 [[menu.main]]
   name = 'RSS'
   url = '/index.xml'
-  weight = 5
+  weight = 4
 
 [markup.highlight]
-  style = 'monokai'
+  noClasses = false
 [markup.goldmark.renderer]
   unsafe = false
+[pagination]
+  pagerSize = 6
 [caches.images]
   dir = ':cacheDir/images'
