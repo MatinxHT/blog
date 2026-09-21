@@ -1,5 +1,6 @@
 baseURL = 'https://martinphysics.club/'
 title = 'martinphysics.club'
+copyright = '© 2020-2026 [martinphysics.club](/)'
 theme = 'PaperMod'
 defaultContentLanguage = 'zh'
 locale = 'zh-CN'
