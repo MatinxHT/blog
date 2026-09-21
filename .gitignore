@@ -1,5 +1,6 @@
 # WordPress exports must never enter the public repository.
 *.[xX][mM][lL]
+!layouts/rss.xml
 *.wxr
 wordpress-export*/
 private/
