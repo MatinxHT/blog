@@ -100,3 +100,6 @@ pre { overflow-x: auto; overflow-wrap: normal; }
 .archived-comment-meta { display: flex; flex-wrap: wrap; gap: .3rem 1rem; align-items: baseline; }
 .archived-comment-meta time { color: #888; font-size: .9rem; }
 .archived-comment p { margin: .8rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.post-comments { margin-top: 2.5rem; }
+.post-comments h2 { margin-bottom: 1rem; }

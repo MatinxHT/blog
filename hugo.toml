@@ -12,6 +12,7 @@ enableRobotsTXT = true
   description = '物理、编程与探索'
   defaultTheme = 'auto'
   disableThemeToggle = false
+  comments = true
   ShowReadingTime = true
   ShowWordCount = true
   ShowBreadCrumbs = true

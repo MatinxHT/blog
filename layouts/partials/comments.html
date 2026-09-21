@@ -1,0 +1,50 @@
+<section class="post-comments" aria-labelledby="comments-title">
+    <h2 id="comments-title">评论</h2>
+    <div id="giscus-comments" class="giscus"></div>
+    <noscript>请启用 JavaScript 以查看和发表评论。</noscript>
+</section>
+
+<script>
+    (() => {
+        const root = document.documentElement;
+        const container = document.getElementById('giscus-comments');
+        const currentTheme = () => root.dataset.theme === 'dark' ? 'dark' : 'light';
+
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.dataset.repo = 'MatinxHT/blog';
+        script.dataset.repoId = 'R_kgDOUePaiA';
+        script.dataset.category = 'Announcements';
+        script.dataset.categoryId = 'DIC_kwDOUePaiM4DGDdU';
+        script.dataset.mapping = 'url';
+        script.dataset.strict = '0';
+        script.dataset.reactionsEnabled = '1';
+        script.dataset.emitMetadata = '0';
+        script.dataset.inputPosition = 'bottom';
+        script.dataset.theme = currentTheme();
+        script.dataset.lang = 'zh-TW';
+        script.crossOrigin = 'anonymous';
+        script.async = true;
+        container.appendChild(script);
+
+        const syncTheme = () => {
+            const theme = currentTheme();
+            script.dataset.theme = theme;
+            const frame = container.querySelector('iframe.giscus-frame');
+            if (!frame) return;
+            frame.contentWindow.postMessage({
+                giscus: {
+                    setConfig: {
+                        theme
+                    }
+                }
+            }, 'https://giscus.app');
+        };
+
+        new MutationObserver(syncTheme).observe(root, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+        new MutationObserver(syncTheme).observe(container, { childList: true });
+    })();
+</script>
