@@ -31,7 +31,7 @@ enableRobotsTXT = true
 
   [params.homeInfoParams]
     Title = 'martinphysics.club'
-    Content = '物理、编程与探索'
+    Content = '物理、编程与探索 · [在线体验 LightDraw](https://lightdraw.martinphysics.club/)'
 
   [params.assets]
     favicon = 'favicon.svg'
