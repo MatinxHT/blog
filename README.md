@@ -2,6 +2,10 @@
 
 站点：<https://martinphysics.club/> 为Hugo 博客，使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 主题。
 
+## 本地调试主页
+
+在 VS Code 的「运行和调试」中选择「博客主页：本地调试」并按 F5。配置优先使用 `.tools/hugo/0.166.0/hugo`，其次使用 PATH 中的 Hugo 0.166.0；还会初始化 PaperMod 子模块、启动包含草稿的本地预览，并在 Chrome 中打开 `http://127.0.0.1:1313/`。首次初始化子模块需要网络连接。调试结束后，在任务终端按 Ctrl+C 停止 Hugo。
+
 
 ## 仓库结构
 

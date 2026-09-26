@@ -2,6 +2,24 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Hugo: 本地预览 (macOS/Linux)",
+      "type": "process",
+      "command": "bash",
+      "args": ["${workspaceFolder}/scripts/local.sh", "serve"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": { "regexp": "^(__HUGO_NO_PROBLEM_OUTPUT__)$", "file": 1, "message": 1 },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Start building sites",
+          "endsPattern": "Web Server is available at"
+        }
+      },
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
       "label": "Hugo: 本地预览",
       "type": "process",
       "command": "powershell.exe",

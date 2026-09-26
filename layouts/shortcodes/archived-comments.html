@@ -1,7 +1,7 @@
 {{ with index hugo.Data.archived_comments .Page.Slug }}
 <section class="archived-comments" aria-labelledby="archived-comments-title">
-    <h2 id="archived-comments-title">历史评论（{{ len . }}）</h2>
-    <p class="archived-comments-note">以下评论来自原 WordPress 站点，按原文保留。</p>
+    <h2 id="archived-comments-title">Archived Comments ({{ len . }})</h2>
+    <p class="archived-comments-note">These comments are preserved from the former WordPress site in their original language.</p>
     <ol class="archived-comments-list">
         {{ range . }}
         <li class="archived-comment" id="comment-{{ .id }}">

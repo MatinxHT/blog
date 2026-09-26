@@ -1,16 +1,16 @@
 baseURL = 'https://martinphysics.club/'
-title = 'martinphysics.club'
+title = 'Martin‘s Physics Club'
 copyright = '© 2020-2026 [martinphysics.club](/)'
 theme = 'PaperMod'
-defaultContentLanguage = 'zh'
-locale = 'zh-CN'
+defaultContentLanguage = 'en'
+locale = 'en-US'
 timeZone = 'Asia/Shanghai'
 hasCJKLanguage = true
 enableRobotsTXT = true
 
 [params]
   env = 'production'
-  description = '物理、编程与探索'
+  description = 'Physics, programming, and exploration'
   defaultTheme = 'auto'
   disableThemeToggle = false
   comments = true
@@ -30,8 +30,8 @@ enableRobotsTXT = true
     enabled = false
 
   [params.homeInfoParams]
-    Title = 'martinphysics.club'
-    Content = '物理、编程与探索 · [在线体验 LightDraw](https://lightdraw.martinphysics.club/)'
+    Title = 'Martin‘s Physics Club'
+    Content = 'Physics, programming, and exploration'
 
   [params.assets]
     favicon = 'favicon.svg'
@@ -41,21 +41,29 @@ enableRobotsTXT = true
     safari_pinned_tab = 'favicon.svg'
 
 [[menu.main]]
-  name = '首页'
+  name = 'Home'
   url = '/'
   weight = 1
 [[menu.main]]
-  name = '文章'
+  name = 'Posts'
   url = '/posts/'
   weight = 2
 [[menu.main]]
-  name = '分类与标签'
+  name = 'Topics & Tags'
   url = '/topics/'
   weight = 3
 [[menu.main]]
+  name = 'LightDraw.Browser'
+  url = 'https://lightdraw.martinphysics.club/'
+  weight = 4
+[[menu.main]]
+  name = 'EdiTools'
+  url = 'https://tools.edi.wang/'
+  weight = 5
+[[menu.main]]
   name = 'RSS'
   url = '/index.xml'
-  weight = 4
+  weight = 6
 
 [markup.highlight]
   noClasses = false

@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "博客主页：本地调试",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:1313/",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Hugo: 本地预览 (macOS/Linux)"
+    }
+  ]
+}
