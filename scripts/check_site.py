@@ -74,6 +74,8 @@ for taxonomy in ('categories', 'tags'):
         f'/{taxonomy}/{term.name}'
         for term in (PUBLIC / taxonomy).iterdir()
         if term.is_dir()
+        and (term / 'index.html').is_file()
+        and '<meta http-equiv=refresh' not in (term / 'index.html').read_text(encoding='utf-8')
     }
     if not expected_terms or not expected_terms.issubset(linked_terms):
         errors.append(f'{taxonomy} index does not list every term')
