@@ -58,7 +58,7 @@ enableRobotsTXT = true
   weight = 4
 [[menu.main]]
   name = 'EdiTools'
-  url = 'https://tools.edi.wang/'
+  url = 'https://tools.edi.wang/?utm_source=martinhung'
   weight = 5
 [[menu.main]]
   name = 'RSS'
