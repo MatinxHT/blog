@@ -8,6 +8,12 @@ timeZone = 'Asia/Shanghai'
 hasCJKLanguage = true
 enableRobotsTXT = true
 
+# Manuscripts are edited separately and never enter the generated site.
+[[module.mounts]]
+  source = 'content'
+  target = 'content'
+  files = ['! draft/**']
+
 [params]
   env = 'production'
   description = 'Physics, programming, and exploration'

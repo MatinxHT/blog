@@ -9,12 +9,17 @@
 
 ## 仓库结构
 
-- `content/posts/`：文章；`wp-编号` 仅用于维持已公开的文章网址。
+- `content/draft/`：手稿，使用自己的语言整理、修改和审核内容；整个目录不参与站点构建。
+- `content/posts/`：正式发布的文章；`wp-编号` 仅用于维持已公开的文章网址。
 - `data/archived_comments.json`：原站已公开评论。
 - `layouts/shortcodes/`：本站使用的图片、公式、视频和历史评论组件；`layouts/` 还包含 PaperMod 的 Hugo 兼容覆盖。
 - `static/images/`：头像与文章图片；`static/vendor/katex/`：公式渲染所需的精简资源。
 - `scripts/`：本地构建与站点检查；`scripts/migration/`：一次性迁移工具及核对清单。
 - `themes/PaperMod/`：固定版本的主题子模块；`public/`、`.tools/` 等本地产物已被 Git 忽略。
+
+## 写作流程
+
+先在 `content/draft/` 中用自己方便审核的语言写手稿，使用普通 Markdown，不需要 Hugo front matter。内容修改、审核完成后，再由 AI 根据手稿整理为 `content/posts/` 中的正式正文，补齐发布信息并按要求直接发布。`content/draft/` 是手稿目录，与 Hugo 的 `draft: true` 草稿标记是两回事；即使本地预览启用 `--buildDrafts`，也不会收录手稿。
 
 
 ## 第三方代码
