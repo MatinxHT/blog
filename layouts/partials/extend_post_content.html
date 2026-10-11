@@ -1,0 +1,11 @@
+{{- $categories := .Language.Params.Taxonomies.category | default "categories" }}
+{{- with .GetTerms $categories }}
+<nav class="post-topics" aria-label="Topics">
+  <span class="post-topics-label">Topics</span>
+  <ul class="post-tags">
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}

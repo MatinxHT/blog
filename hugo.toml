@@ -57,7 +57,7 @@ enableRobotsTXT = true
   url = 'https://lightdraw.martinphysics.club/?utm_source=martinhung'
   weight = 4
 [[menu.main]]
-  name = 'Chromaticitydotnet'
+  name = 'ChromaticityDotNet'
   url = 'https://chromaticitydotnet.martinphysics.club/?utm_source=martinhung'
   weight = 5
 [[menu.main]]

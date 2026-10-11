@@ -36,6 +36,14 @@ body { font-family: Lato, 'Segoe UI', 'Microsoft YaHei', sans-serif; }
   -webkit-line-clamp: 3;
 }
 .topics-header p { color: var(--secondary); }
+.post-topics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  margin-top: var(--content-gap);
+}
+.post-topics-label { color: var(--secondary); font-size: 14px; }
 .topics-section { margin: 2.5rem 0; }
 .topics-section h2 { margin-bottom: 1rem; }
 .category-grid {
